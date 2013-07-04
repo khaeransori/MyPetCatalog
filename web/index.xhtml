@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Pet Catalog</title>
+    </h:head>
+    <h:body>
+        <h:panelGrid columns="2">
+            <h2>#{msgs.Title}</h2>
+            <h:graphicImage library="images" name="banner_logo.gif"
+                            style="width: 65px; height: 55px;" />
+        </h:panelGrid>
+        <h:form styleClass="form">
+            <h:outputStylesheet name="css/styles.css"/>
+            <h:outputText value="Item #{catalog.pagingInfo.firstItem + 1} .. 
+                          #{catalog.pagingInfo.lastItem} of
+                          #{catalog.pagingInfo.itemCount} "/>
+            <h:commandButton action="#{catalog.prev}" value="#{mes.Previous}"
+                             rendered="#{catalog.pagingInfo.isPrevItems}" />
+            <h:commandButton action="#{catalog.next}" value="#{msgs.Next}"
+                             rendered="#{catalog.pagingInfo.isNextItems}" />
+            <h:dataTable var="row" value="#{catalog.items}" border="0"
+                         cellpadding="2" cellspacing="0"
+                         rowClasses="odd_row,even_row" rules="all"
+                         style="border:solid 1px" >
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msgs.Name}" />
+                    </f:facet>
+                    <h:commandLink action="#{catalog.showDetail(row)}"
+                                   value="#{row.name}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msgs.Photo}" />
+                    </f:facet>
+                    <h:graphicImage library="images"
+                                    name="#{row.imagethumburl}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msgs.Price}" />
+                    </f:facet>
+                    <h:outputText value="#{row.price}" />
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

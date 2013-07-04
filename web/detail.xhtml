@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Show Detail</title>
+    </h:head>
+    <h:body>
+        <h:panelGrid columns="2">
+            <h2>#{msgs.Title}</h2>
+            <h:graphicImage library="images" name="banner_logo.gif"
+                            style="width: 65px; height: 55px;" />
+        </h:panelGrid>
+        <h:form styleClass="form">
+            <h:outputStylesheet name="css/styles.css"/>
+            <h:panelGrid columns="2" border="0">
+                <h:outputText value="#{msgs.Name}:" />
+                <h:outputText value="#{catalog.item.name}" title="Name" />
+                <h:outputText value="#{msgs.Description}" />
+                <h:outputText value="#{catalog.item.description}" 
+                              title="Description"/>
+                <h:outputText value="#{msgs.Photo}:" />
+                <h:graphicImage library="images"
+                                name="#{catalog.item.imageurl}"
+                                title="Imageurl" />
+                <h:outputText value="#{msgs.Price}" />
+                <h:outputText value="#{catalog.item.price}" title="Price"/>
+            </h:panelGrid>
+            <h:commandButton id="back" value="Back" action="index"/>
+        </h:form>
+    </h:body>
+</html>
+
